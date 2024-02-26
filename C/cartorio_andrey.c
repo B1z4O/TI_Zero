@@ -153,54 +153,70 @@ int deletar(){		//função de deletar
 }
 
 int main(){		//função de menu
+
+	setlocale(LC_ALL, "Portuguese");
 	int opcao=0; //definição de variável
 	int laco=1;
+	char senha[10]="a";
+	int comparacao;
 	
-	for(laco=1;laco=1;){		//laço criadopara formar um loop, "o código vai repetir quando 'laço' que vale 1 valer 1", como já vale 1 e não tem limite de vezes, continua num loop.
+	printf("### REGISTRO DE NOMES NA EBAC ###\n\n");				//criação de um login para o acesso do sistema
+	printf("LOGIN DE ADMINISTRADOR!\n\nDigite sua senha: ");
+	scanf("%s", senha);
 	
-		setlocale(LC_ALL, "Portuguese"); //definindo a linguagem
+	comparacao = strcmp(senha,"admin");		//cria uma comparação da variável com a senha escolhida "admin"
 	
-		system("cls"); 
+	if (comparacao == 0)		//se a senha estiver correta a variável recebe "0", e no caso de ela receber, libera o uso do sistema
+	{
+		system("cls");
 		
-		//começo do menu
-		printf("### REGISTRO DE NOMES NA EBAC ###\n\n");		//escolhas do menu
-		printf("Escolha a opção desejada do menu:\n\n");
-		printf("\t1 - Registrar nomes\n");
-		printf("\t2 - Consultar nomes\n");
-		printf("\t3 - Deletar nomes\n");
-		printf("\t4 - Sair do sistema\n");
-		printf("Opção:");
-		//fim do menu
+		for(laco=1;laco=1;){		//laço criado para formar um loop, "o código vai repetir quando 'laço' que vale 1 valer 1", como já vale 1 e não tem limite de vezes, continua num loop.
 	
-		scanf("%d", &opcao); //código para guardar a informação digitada na variável criada
+			setlocale(LC_ALL, "Portuguese"); //definindo a linguagem
+	
+			system("cls");
 		
-		system("cls"); //código para limpar o as mensagens no bloco de comando
+			//começo do menu
+			printf("### REGISTRO DE NOMES NA EBAC ###\n\n");		//escolhas do menu
+			printf("Escolha a opção desejada do menu:\n\n");
+			printf("\t1 - Registrar nomes\n");
+			printf("\t2 - Consultar nomes\n");
+			printf("\t3 - Deletar nomes\n\n");
+			printf("\t4 - Sair do sistema\n");
+			printf("Opção:");
+			//fim do menu
 		
-		switch(opcao){			//switch serviu para substituir o 'if' e 'else', assim ajudando a diminuir o código.
+			scanf("%d", &opcao); //código para guardar a informação digitada na variável criada
 			
-			case 1:				//caso aperte o número correspondente, mostra a função abaixo, neste caso, 'case 1' corresponde ao 1 digitado e mostra a função guardada na variável 'registro'.
-			registro();			//chama a função registro 
-			break;					//break finaliza o 'case'
+			system("cls"); //código para limpar o as mensagens no bloco de comando
+			
+			switch(opcao){			//switch serviu para substituir o 'if' e 'else', assim ajudando a diminuir o código.
 				
-			case 2:
-			consultar();		//chama a função consultar
-			break;
+				case 1:				//caso aperte o número correspondente, mostra a função abaixo, neste caso, 'case 1' corresponde ao 1 digitado e mostra a função guardada na variável 'registro'.
+				registro();			//chama a função registro 
+				break;					//break finaliza o 'case'
+					
+				case 2:
+				consultar();		//chama a função consultar
+				break;
+					
+				case 3:
+				deletar();		//chama a função deletar
+				break;
 				
-			case 3:
-			deletar();		//chama a função deletar
-			break;
-			
-			case 4:
-			printf("Fechando sistema..\n");
-			return 0;
-			break;
-			
-			default:
-			printf("A opção escolhida é inválida!\n");
-			system("pause");									//system("pause"); da uma pausa na continuidade do código "aperte uma tecla para continuar".
-			break;
+				case 4:
+				printf("Fechando sistema..\n");		//fecha o sistema com "return 0" caso o usuário digite '4' no menu.
+				return 0;
+				break;
+				
+				default:
+				printf("A opção escolhida é inválida!\n");
+				system("pause");									//system("pause"); da uma pausa na continuidade do código "aperte uma tecla para continuar".
+				break;
+			}
 		}
-	
-		printf("\n\n|CUIDADO! ESSE SOFTWARE ESTÁ SENDO CRIADO POR UM INICIANTE!|by Andrey"); //apenas uma mensagem final para o cmd, créditos.
 	}
+	
+	else
+		printf("Senha incorreta!\n");		//exibe está mensagem caso a senha digitada esteja errada, já que a variável não recebe "0" caso a senha não seja "admin"
 }
